@@ -1,7 +1,7 @@
-# railway
-make web-site with a railway tickets
+# railway<br>
+make web-site with a railway tickets<br>
 Данный проект был реализован 29-апр-2014 г.<br>
-Суть проекта: создания сайта на котором находится 40697 страниц с информацией о расписании и ценах на железнодорожные пассажирские перевозки по территории РФ.<br> 
+Суть проекта: создание сайта, на котором находится более 40 тыс. страниц с информацией о расписании и ценах на железнодорожные пассажирские перевозки по территории РФ.<br> 
 На каждой из страничек сайта выводится следующая информация:
 ********************************************************************
     * Номер поезда	
@@ -51,7 +51,7 @@ $body='Поиск железнодорожных билетов ' . $city1 . ' -
     update_post_meta($post_id,'keywords',$key);<br> 
 }<br>
 <br>   
-   Таким образом было сгенерировано более 40тыс страниц...<br>
+   Таким образом было сгенерировано 40695 страниц...<br>
 *************************************************************   
    Кроме того, на момент создания сайта, работала партнерка, позволяющая вставлять на сайт javascript-код с формой поиска ж/д билетов по заданному маршруту:<br> 
    $body .='<script language="javascript" type="text/javascript" src="http://www.davs.ru/core/js/jquery-1.6.1.min.js"></script><script language="javascript" type="text/javascript" src="http://www.davs.ru/core/js/jquery-ui-1.8.13.custom.min.js"></script><script language="javascript" type="text/javascript" src="http://www.davs.ru/poezda/js/jquery.jqtransform.js"></script><script language="javascript" type="text/javascript" src="http://www.davs.ru/poezda/js/jquery.ui.autocomplete.js"></script><script language="javascript" type="text/javascript" src="http://www.davs.ru/poezda/js/js.js"></script><script language="javascript" type="text/javascript" src="http://www.davs.ru/poezda/js/insert.js?encoding=utf-8&partner=...&form_from_city='.$city1.'&form_to_city='.$city2.'"></script>';<br>
