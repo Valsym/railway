@@ -22,23 +22,23 @@ make web-site with a railway tickets
    ************************************************************************************
    <b>Теперь подробнее об алгоритме.</b><br> 
    Сначала из таблицы Базы Данных wp_zd1 построчно выбирается вся информация о маршруте, цене, времени отправления и т.п.: 
-   *****************************************************************************************
+<br>  
    $table_name = $wpdb->prefix . "zd1";<br>  
-  $row = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $table_name WHERE id = %d LIMIT 1", $id ) );
-**********************************************************************************************************
-   Затем для поста формируются переменные: $title, $keywords, $description, $body (content), $date:
-   ********************************************************************************************************
+  $row = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $table_name WHERE id = %d LIMIT 1", $id ) );<br>
+<br>
+   Затем для поста формируются переменные: $title, $keywords, $description, $body (content), $date:<br>
+<br>
    $city1 = $row->c1; $city2 = $row->c2;<br> 
    ...
    $title ='Железнодорожные билеты на поезд '. $city1.' - '. $city2;<br> 
    $key='билеты '. $city1.' - '. $city2.' поезд, ...<br> 
    $descr='Посмотреть расписание поездов '.$city_name2.' и купить дешевые билеты на поезд '.$city_name2.' из '.$city_name1.
 ' можно на нашем сайте. Узнайте стоимость билета на поезд  '.$city1.' - '.$city2.', время отправления и время прибытия поезда '.$city1.' - '.$city2.'.';<br> 
-$body='Поиск железнодорожных билетов ' . $city1 . ' - '. $city2 . '<!--more-->'.'На этой страничке Вы сможете узнать точное расписание, цены и наличие железнодорожных билетов на поезд ' . $city1 . ' - ' . $city2 ...;
+$body='Поиск железнодорожных билетов ' . $city1 . ' - '. $city2 . '<!--more-->'.'На этой страничке Вы сможете узнать точное расписание, цены и наличие железнодорожных билетов на поезд ' . $city1 . ' - ' . $city2 ...;<br>
 
-***************************************************************************************************
+<br>
    И наконец все это записывается в таблицу wp_posts Базы данных в формате вордпресс:
-***********************************************************************************************   
+<br>  
    if (empty($posts) || empty($posts->ID) ){<br>
     $post['post_content'] = $body;<br> 
     $post['post_title'] = $title;<br> 
@@ -49,17 +49,16 @@ $body='Поиск железнодорожных билетов ' . $city1 . ' -
     update_post_meta($post_id,'source_link',$url);<br> 
     update_post_meta($post_id,'description',$descr);<br> 
     update_post_meta($post_id,'keywords',$key);<br> 
-}
-************************************************************   
+}<br>
+<br>   
    Таким образом было сгенерировано более 40тыс страниц...
 *************************************************************   
    Кроме того, на момент создания сайта, работала партнерка, позволяющая вставлять на сайт javascript-код с формой поиска ж/д билетов по заданному маршруту:<br> 
-   $body .='<script language="javascript" type="text/javascript" src="http://www.davs.ru/core/js/jquery-1.6.1.min.js"></script><script language="javascript" type="text/javascript" src="http://www.davs.ru/core/js/jquery-ui-1.8.13.custom.min.js"></script><script language="javascript" type="text/javascript" src="http://www.davs.ru/poezda/js/jquery.jqtransform.js"></script><script language="javascript" type="text/javascript" src="http://www.davs.ru/poezda/js/jquery.ui.autocomplete.js"></script><script language="javascript" type="text/javascript" src="http://www.davs.ru/poezda/js/js.js"></script><script language="javascript" type="text/javascript" src="http://www.davs.ru/poezda/js/insert.js?encoding=utf-8&partner=...&form_from_city='.$city1.'&form_to_city='.$city2.'"></script>';
-   ************************************************************************************
-где $city1 - пункт отправления и $city2 - пункт прибытия.
-**********************************
+   $body .='<script language="javascript" type="text/javascript" src="http://www.davs.ru/core/js/jquery-1.6.1.min.js"></script><script language="javascript" type="text/javascript" src="http://www.davs.ru/core/js/jquery-ui-1.8.13.custom.min.js"></script><script language="javascript" type="text/javascript" src="http://www.davs.ru/poezda/js/jquery.jqtransform.js"></script><script language="javascript" type="text/javascript" src="http://www.davs.ru/poezda/js/jquery.ui.autocomplete.js"></script><script language="javascript" type="text/javascript" src="http://www.davs.ru/poezda/js/js.js"></script><script language="javascript" type="text/javascript" src="http://www.davs.ru/poezda/js/insert.js?encoding=utf-8&partner=...&form_from_city='.$city1.'&form_to_city='.$city2.'"></script>';<br>
+где $city1 - пункт отправления и $city2 - пункт прибытия.<br>
+<br>
 Эта форма давала пользователю возможность перейти на сайт партнерки и сделать заказ билетов. С апреля по август 2014 было 9 заказов на сумму 39тыс.руб. Однако партерка оказалась довольно мутной и предложила мне (после моих настойчивых просьб прислать договор) выплатить 420р. т.е. чуть больше 1% (см.файл mail.txt). После чего форма была деактивирована и с сентября 2014 заменена на блоки контекстной рекламы. За весь период по наст.время было заработано 453,69$ (см. на фото income-public.jpg)<br> 
-Так что проект продолжает жить по сей день и приность пусть и небольшие деньги.
+Так что проект продолжает жить по сей день и приность пусть и небольшие деньги.<br>
 *********************************************************************************************************
 Проект выложен сюда для подтверждения моего резюме. Некоторые файлы, содержащие финансовые отчеты и мою личную е-мейл переписку в были добавлены в игнор и могут быть выложены на данный репозиторий только по просьбе потенциального работодателя.
 
